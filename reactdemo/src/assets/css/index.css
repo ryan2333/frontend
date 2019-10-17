@@ -1,4 +1,5 @@
 @charset "UTF-8";
+@import '~antd/dist/antd.css';
 
 .index_header {
   width: 96%;
@@ -267,4 +268,9 @@
   flex: 1;
   height: 500px;
   border: 1px;
+}
+
+.myicon {
+  color: green;
+  font-size: 30px;
 }
