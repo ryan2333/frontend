@@ -7,7 +7,7 @@ let routes = [
   {
     path: "/",
     component: Home,
-    exact: true
+    like: true
   },
   {
     path: "/user",
@@ -15,7 +15,7 @@ let routes = [
     routes: [
       {
         path: '/user/',
-        exact: true,
+        like: true,
         component: Main
       },
       {

@@ -64,7 +64,7 @@ class App extends  React.Component{
               <div style={{ padding: 24, background: '#fff', minHeight: 360 }}>Bill is a cat.</div> */}
                 {
                   Routers.map((router, key) => {
-                    if (router.exact) {
+                    if (router.like) {
                       return <Route exact path={router.path} key={key} render={props => (
                         <router.component {...props} routes={router.routes} />
                       )}></Route>
