@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<div id="App">
+
+</div>
+
+
+<script src="https://cdn.bootcss.com/babel-standalone/7.0.0-beta.3/babel.min.js"></script>
+<script src="https://cdn.bootcss.com/react/16.10.2/umd/react.development.js"></script>
+<script src="https://cdn.bootcss.com/react-dom/16.10.2/umd/react-dom.development.js"></script>
+<script src="https://cdn.bootcss.com/prop-types/15.7.2/prop-types.js"></script>
+<script type="text/babel">
+  // 创建组件对象
+
+  class Mycomponent extends React.Component {
+    constructor(props) {
+      super(props)
+
+      // 初始化状态
+      this.state = {
+        opacity: 1
+      }
+    }
+
+    changeOpacity=()=>{
+      console.log("定时器开始执行")
+      let {opacity} = this.state   // state简写，ES6写法
+      if (opacity < 0){
+        opacity = 1
+      } else {
+        opacity -= 0.2
+      }
+      this.setState({
+        opacity
+      })
+    }
+
+    componentDidMount() {
+      this.interValId = setInterval(this.changeOpacity,1000)
+    }
+
+    distroyComponent=()=>{
+      // 卸载组件
+      ReactDOM.unmountComponentAtNode(document.getElementById('App'))
+    }
+
+    componentWillUnmount() {
+      // 清理定时器
+      clearInterval(this.interValId)
+    }
+
+
+    render(){
+      return (
+        <div>
+
+          <h2 style={{opacity: this.state.opacity}}>{this.props.msg}</h2>
+          <button onClick={this.distroyComponent}>不活了</button>
+        </div>
+      )
+    }
+  }
+
+  // 将虚拟DOM渲染到页面真实DOM容器中
+  ReactDOM.render(<Mycomponent msg="React太难了，学不会怎么办？" />,document.getElementById("App"))
+</script>
+</body>
+</html>
