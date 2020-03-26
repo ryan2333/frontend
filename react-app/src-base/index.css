@@ -1,0 +1,12 @@
+.logo {
+  width: 200px;
+  height: 200px;
+  margin: 0 auto;
+  display: inline-block;
+}
+
+.title {
+  color: red;
+  font-size: 20px;
+  text-align: center;
+}

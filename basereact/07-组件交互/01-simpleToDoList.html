@@ -5,6 +5,106 @@
   <title>Title</title>
 </head>
 <body>
+<div id="App">
 
+</div>
+
+
+<script src="https://cdn.bootcss.com/babel-standalone/7.0.0-beta.3/babel.min.js"></script>
+<script src="https://cdn.bootcss.com/react/16.10.2/umd/react.development.js"></script>
+<script src="https://cdn.bootcss.com/react-dom/16.10.2/umd/react-dom.development.js"></script>
+<script src="https://cdn.bootcss.com/prop-types/15.7.2/prop-types.js"></script>
+<script type="text/babel">
+  /* 创建组件对象
+// 问题1：数据保存在哪个组件
+//   看数据是某个组件需要(保存在某个组件)，或某些组件(保存在这些组件共同的父亲)
+
+  问题2：子组件需要改变父组件的状态
+      子组件不能直接改变父组件的状态
+      状态在哪个组件，改变组件的行为就在哪个组件
+   */
+  class RootComponent extends React.Component {
+    constructor(props) {
+      super(props)
+      this.state = {
+        todos: [],
+      }
+    }
+
+    add=(item)=>{
+      this.setState({
+        todos:[...this.state.todos, item]
+      })
+    }
+
+    render(){
+      return (
+          <div>
+            <h1>simple ToDO List</h1>
+            <Add count={this.state.todos.length} add={this.add}></Add>
+            <List todos={this.state.todos}></List>
+          </div>
+      )
+    }
+  }
+
+  class Add extends React.Component {
+    constructor(props) {
+      super(props)
+    }
+
+    addTodo = () => {
+      // 1. 读取输入
+      const todoinput = this.todoinput.value.trim()
+
+      // 2. 检查合法性
+      if (!todoinput) {
+        return
+      }
+      // 3. 添加
+      this.props.add(todoinput)
+
+      // 4. 清除输入
+      this.todoinput.value = ''
+    }
+
+    render(){
+      return (
+          <div>
+            <input ref={todoinput=>this.todoinput=todoinput} />
+            <button onClick={this.addTodo}>Add {this.props.count+1}</button>
+          </div>
+      )
+    }
+  }
+  Add.propTypes = {
+    count: PropTypes.number.isRequired,
+    add: PropTypes.func.isRequired
+  }
+
+  class List extends React.Component {
+
+
+    render(){
+      return (
+          <div>
+            <ul>
+              {
+                this.props.todos.map((value,key)=>
+                  <li key={key}>{value}</li>
+                )
+              }
+            </ul>
+          </div>
+      )
+    }
+  }
+  List.propsTypes = {
+    todos: PropTypes.array
+  }
+
+  // 将虚拟DOM渲染到页面真实DOM容器中
+  ReactDOM.render(<RootComponent />,document.getElementById("App"))
+</script>
 </body>
 </html>

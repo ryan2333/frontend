@@ -5,6 +5,49 @@
   <title>Title</title>
 </head>
 <body>
+<div id="App">
 
+</div>
+
+
+<script src="https://cdn.bootcss.com/babel-standalone/7.0.0-beta.3/babel.min.js"></script>
+<script src="https://cdn.bootcss.com/react/16.10.2/umd/react.development.js"></script>
+<script src="https://cdn.bootcss.com/react-dom/16.10.2/umd/react-dom.development.js"></script>
+<script src="https://cdn.bootcss.com/prop-types/15.7.2/prop-types.js"></script>
+<script type="text/babel">
+  // 创建组件对象
+
+  class Mycomponent extends React.Component {
+    constructor(props) {
+      super(props)
+      this.state = {
+        date: new Date()
+      }
+    }
+
+    componentDidMount() {
+      setInterval(()=>{
+        this.setState({
+          date: new Date()
+        })
+      },1000)
+    }
+
+
+    render(){
+      return (
+        <div>
+          <p>
+            Hello, <input type="text" placeholder="Your name here" />&nbsp;
+            <span> It is {this.state.date.toTimeString()}</span> {/* 只更新此区域*/}
+          </p>
+        </div>
+      )
+    }
+  }
+
+  // 将虚拟DOM渲染到页面真实DOM容器中
+  ReactDOM.render(<Mycomponent />,document.getElementById("App"))
+</script>
 </body>
 </html>

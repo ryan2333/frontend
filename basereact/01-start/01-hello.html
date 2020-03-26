@@ -2,9 +2,23 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Title</title>
+  <title>01-hello</title>
 </head>
 <body>
+<div id="App">
 
+</div>
+
+<script src="https://cdn.bootcss.com/babel-standalone/7.0.0-beta.3/babel.min.js"></script>
+<script src="https://cdn.bootcss.com/react/16.10.2/umd/react.development.js"></script>
+<script src="https://cdn.bootcss.com/react-dom/16.10.2/umd/react-dom.development.js"></script>
+
+<script type="text/babel">
+  // 创建虚拟DOM元素对象
+  let vDom = <h1>Hello React</h1> // 非字符串
+
+  // 将虚拟DOM渲染到页面真实DOM容器中
+  ReactDOM.render(vDom,document.getElementById("App"))
+</script>
 </body>
 </html>

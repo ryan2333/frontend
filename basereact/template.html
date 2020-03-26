@@ -5,6 +5,19 @@
   <title>Title</title>
 </head>
 <body>
+<div id="App">
 
+</div>
+
+<script src="./js/react.development.js"></script>
+<script src="./js/react-dom.development.js"></script>
+<script src="./js/babel.min.js"></script>
+<script type="text/babel">
+  // 创建虚拟DOM元素对象
+  let vDom = <h1>Hello React</h1> // 非字符串
+
+  // 将虚拟DOM渲染到页面真实DOM容器中
+  ReactDOM.render(vDom,document.getElementById("App"))
+</script>
 </body>
 </html>

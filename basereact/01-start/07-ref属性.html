@@ -5,6 +5,47 @@
   <title>Title</title>
 </head>
 <body>
+<div id="App">
 
+</div>
+
+
+<script src="https://cdn.bootcss.com/babel-standalone/7.0.0-beta.3/babel.min.js"></script>
+<script src="https://cdn.bootcss.com/react/16.10.2/umd/react.development.js"></script>
+<script src="https://cdn.bootcss.com/react-dom/16.10.2/umd/react-dom.development.js"></script>
+<script type="text/babel">
+  // 创建组件对象
+
+  class Mycomponent extends React.Component {
+
+    showInput=()=> {
+      const xxx = this.xxx.value
+      console.log(xxx)
+      const ggg = this.refs.input.value
+      console.log(ggg)
+    }
+
+    showBlur = (event) => {
+      const fff = event.target.value
+      console.log(fff)
+    }
+
+    render(){
+      return (
+          <div>
+            {/*官方不建议使用*/}
+            <input ref="input"/>
+            {/*官方建议使用*/}
+            <input ref={xxx=> this.xxx = xxx}/>
+            <button onClick={this.showInput}>提示输入内容</button>
+            <input placeholder="失去焦点提示内容" onBlur={this.showBlur}/>
+          </div>
+      )
+    }
+  }
+
+  // 将虚拟DOM渲染到页面真实DOM容器中
+  ReactDOM.render(<Mycomponent />,document.getElementById("App"))
+</script>
 </body>
 </html>

@@ -5,6 +5,33 @@
   <title>Title</title>
 </head>
 <body>
+<div id="App">
 
+</div>
+
+<div id="App2"></div>
+
+<script src="https://cdn.bootcss.com/babel-standalone/7.0.0-beta.3/babel.min.js"></script>
+<script src="https://cdn.bootcss.com/react/16.10.2/umd/react.development.js"></script>
+<script src="https://cdn.bootcss.com/react-dom/16.10.2/umd/react-dom.development.js"></script>
+<script type="text/javascript">
+  const msg = "I like You"
+  const myId = "atguigu"
+
+  // 创建虚拟DOM元素对象
+  const vDom  = React.createElement('h2', {id: myId.toLocaleLowerCase()}, msg.toLocaleUpperCase())
+
+  // 将虚拟DOM渲染到页面真实DOM容器中
+  ReactDOM.render(vDom,document.getElementById("App"))
+
+
+</script>
+<script type="text/babel">
+  // 将虚拟DOM渲染到页面真实DOM容器中
+  const vDom2 = <h3 id={myId.toLocaleUpperCase()}>{msg.toLocaleLowerCase()}</h3>
+
+  // 将虚拟DOM渲染到页面真实DOM容器中
+  ReactDOM.render(vDom2,document.getElementById("App2"))
+</script>
 </body>
 </html>

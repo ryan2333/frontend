@@ -4,6 +4,7 @@ import {Card, Icon, List} from 'antd'
 import LinkButton from "../../components/link-button";
 import {BASE_IMG_URL} from "../../utils/constans";
 import {reqCategory} from "../../api";
+import memoryUtils from "../../utils/memoryUtils";
 
 /*
 Product 详情页
@@ -16,10 +17,10 @@ class ProductDetail extends Component {
   }
   async componentDidMount() {
     // 得到当前商品分类ID
-    const {pCategoryId, categoryId}  = this.props.location.state.product
+    const {pCategoryId, categoryId}  = memoryUtils.product
+    console.log("pcategoryId, categoryId: ", pCategoryId, categoryId)
     if (pCategoryId === '0') { // 一级分类下的商品
       const result = await reqCategory(categoryId)
-      console.log(categoryId)
       const cName1 = result.data.name
       this.setState({cName1})
     } else { // 二级分类下的商品
@@ -40,9 +41,13 @@ class ProductDetail extends Component {
     }
   }
 
+  componentWillUnmount() {
+    memoryUtils.product = {}
+  }
+
   render() {
     // 读取携带过来的state数据
-    const {name,desc,price,detail, imgs} = this.props.location.state.product
+    const {name,desc,price,detail, imgs} = memoryUtils.product
     const {cName1, cName2} = this.state
     const title=(
         <span>

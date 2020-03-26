@@ -5,6 +5,7 @@ import LinkButton from "../../components/link-button";
 import {reqCategorys, reqAddOrUpdateProduct} from '../../api'
 import PicturesWall from "./pictures-wall";
 import RichTextEditor from "./rich-text-editor";
+import memoryUtils from "../../utils/memoryUtils";
 
 const {Item} = Form
 const {TextArea} = Input
@@ -93,7 +94,6 @@ class ProductAddUpdate extends Component {
         const product = {
           name, desc, price, imgs, detail, pCategoryId, categoryId
         }
-        console.log("addupdate:",product)
         // 如果是更新，需要添加_id
         if (this.isUpdate) {
           product._id = this.product._id
@@ -161,12 +161,16 @@ class ProductAddUpdate extends Component {
 
   UNSAFE_componentWillMount() {
     // 取出携带的state
-    const product = this.props.location.state // 如果是添加，没有值，否则有值
+    const product = memoryUtils.product // 如果是添加，没有值，否则有值
 
     // 保存是否是更新的标识
-    this.isUpdate = !!product
+    this.isUpdate = !!product._id
     // 保存商品，如果没有，保存的是空对象
     this.product = product || {}
+  }
+
+  componentWillUnmount() {
+    memoryUtils.product = {}
   }
 
   render() {

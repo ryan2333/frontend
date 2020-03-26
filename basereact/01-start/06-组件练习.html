@@ -5,6 +5,48 @@
   <title>Title</title>
 </head>
 <body>
+<div id="App">
 
+</div>
+
+
+<script src="https://cdn.bootcss.com/babel-standalone/7.0.0-beta.3/babel.min.js"></script>
+<script src="https://cdn.bootcss.com/react/16.10.2/umd/react.development.js"></script>
+<script src="https://cdn.bootcss.com/react-dom/16.10.2/umd/react-dom.development.js"></script>
+<script src="https://cdn.bootcss.com/prop-types/15.7.2/prop-types.js"></script>
+<script type="text/babel">
+  // 创建组件对象
+const personInfo = {
+  name: 'Tony',
+  sex: '女',
+  age: 22
+}
+
+// props默认值
+Person.defaultProps = {
+  sex: '男',
+  age: 18
+}
+
+// 设定props值类型及必要性
+  Person.propTypes = {
+    name: PropTypes.string.isRequired,
+    age: PropTypes.number
+  }
+
+// 创建组件
+  function Person(props) {
+    return (
+        <ul>
+          <li>姓名：{props.name}</li>
+          <li>性别：{props.sex}</li>
+          <li>年龄：{props.age}</li>
+        </ul>
+    )
+  }
+
+  // 将虚拟DOM渲染到页面真实DOM容器中
+  ReactDOM.render(<Person {...personInfo} />,document.getElementById("App"))
+</script>
 </body>
 </html>

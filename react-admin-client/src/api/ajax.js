@@ -14,7 +14,6 @@ import axios from 'axios'
 import {message} from 'antd'
 
 export default function ajax(url, data={}, type='GET') {
-  console.log("ajax: ", data)
   return new Promise((resolve, reject)=>{
     let promise
     // 执行异步请求

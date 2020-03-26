@@ -5,6 +5,7 @@ import LinkButton from "../../components/link-button";
 import {reqProducts, reqUpdateStatus} from "../../api";
 import {PAGE_SIZE} from "../../utils/constans";
 import './product.less'
+import memoryUtils from "../../utils/memoryUtils";
 /*
 Product Home组件
  */
@@ -19,6 +20,22 @@ class ProductHome extends Component {
     loading: false,
     searchName: '',  // 搜索的关键字
     searchType: 'productName', // 根据哪个字段搜索
+  }
+
+  /*
+  显示详情界面
+  */
+  showDetail = (product) => {
+    this.props.history.push('/product/detail')
+    memoryUtils.product = product
+  }
+
+  /*
+  显示修改商品界面
+  */
+  showUpdate = (product) => {
+    this.props.history.push('/product/addupdate')
+    memoryUtils.product = product
   }
 
   initColumns = () => {
@@ -61,9 +78,9 @@ class ProductHome extends Component {
           return (
               <span>
                <LinkButton
-                   onClick={()=> this.props.history.push('/product/detail', {product})}
+                   onClick={()=> this.showDetail(product)}
                >详情</LinkButton>
-               <LinkButton onClick={() => this.props.history.push('/product/addupdate', product)}>修改</LinkButton>
+               <LinkButton onClick={() => this.showUpdate(product)}>修改</LinkButton>
              </span>
           )
         }
